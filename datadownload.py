@@ -20,13 +20,13 @@ import binance                            # Needed for exception handling
 from binance.client import Client         # Binance API Client
 from auth import key, secret              # Binance API key
 import pandas as pd                       # Data processing
-import seaborn as sns                     # Plotting
 from pycoingecko import CoinGeckoAPI      # Coingecko for mcap, social data
 from datetime import datetime, timedelta  # Needed for API rate limit
 from time import sleep                    # Needed for API rate limit
+import threading                          # threaded write
 
 # Start and end date
-START_DATE = "01-01-2020"
+START_DATE = "01-01-2017"
 END_DATE = "31-07-2020"
 # All symbols available on Binance futures as per 23-AUG-2020
 symbols = ["BTC", "ETH", "LINK", "OMG", "DOT",
@@ -108,6 +108,11 @@ def get_binance_data(symbol, date):
     return response
 
 
+def pd_write(dataframe, date):
+    dataframe.to_csv(f"./datafiles/data_{date}", index=False)
+    return 0
+
+
 # Corresponding CoinGecko ID's
 cgSymbols = {}
 for coin in coinsList:
@@ -121,12 +126,12 @@ dataColumns = ["asset", "date", "return_1d", "range_to_price", "momentum_1d",
                "momentum_7d", "momentum_30d", "volume_1d", "market_cap",
                "alexa_rank", "reddit_posts_48h", "reddit_comments_48h"]
 
-data = pd.DataFrame(columns=dataColumns)
 dates = pd.date_range(START_DATE, END_DATE).to_list()
 startTime = datetime.now()
 
 for date in dates:
     print(date.strftime('%d-%m-%Y'))
+    data = pd.DataFrame(columns=dataColumns)
     for coin in symbols:
         # Comply with CoinGecko API rate limit
         while datetime.now() - startTime < timedelta(seconds=1):
@@ -199,7 +204,14 @@ for date in dates:
                  'reddit_posts_48h': reddit_posts,
                  'reddit_comments_48h': reddit_comments}
         
-        data.append(entry, ignore_index=True)
+        data = data.append(entry, ignore_index=True)
+    
+    writer = threading.Thread(group=None,
+                              target=pd_write,
+                              name="Thread-writer",
+                              args=(data, coingeckoDate)
+                              )
+    writer.run()
         
         
         
