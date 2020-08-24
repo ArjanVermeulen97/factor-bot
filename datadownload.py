@@ -14,6 +14,8 @@ The data is recorded on a daily timeframe, with the following factors:
     1/7/30 day momentum: close/open
     daily volume
     market cap
+    reddit posts/comments
+    alexa rank
 """
 
 import binance                            # Needed for exception handling
@@ -26,8 +28,9 @@ from time import sleep                    # Needed for API rate limit
 import threading                          # threaded write
 
 # Start and end date
-START_DATE = "01-01-2017"
-END_DATE = "31-07-2020"
+START_DATE = "07-18-2019"
+END_DATE = "07-31-2020"
+
 # All symbols available on Binance futures as per 23-AUG-2020
 symbols = ["BTC", "ETH", "LINK", "OMG", "DOT",
            "ATOM", "SXP", "BAND", "KAVA", "XTZ",
@@ -74,10 +77,10 @@ def get_cg_data(symbol, date):
 
 
 def get_binance_data(symbol, date):
-    OHLCVData = client.get_historical_klines(f"{coin}USDT",
+    OHLCVData = client.get_historical_klines(f"{symbol}USDT",
                                                  Client.KLINE_INTERVAL_1DAY,
-                                                 binanceDate,
-                                                 binanceDate)
+                                                 date,
+                                                 date)
     try:
         openPrice = float(OHLCVData[0][1])
     except IndexError:
