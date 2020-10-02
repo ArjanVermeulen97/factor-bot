@@ -13,3 +13,4 @@ highest drawdown: -4.45%
 return: -8.41%
 highest return: 4.12%
 highest drawdown: -12.6%%
+Note: DeFi bubble burst, loads of new futures contracts available. Might switch available symbols.
