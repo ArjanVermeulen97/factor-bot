@@ -14,3 +14,10 @@ return: -8.41%
 highest return: 4.12%
 highest drawdown: -12.6%%
 Note: DeFi bubble burst, loads of new futures contracts available. Might switch available symbols.
+
+6 weeks:
+Major overhaul to used assets due to defi bubble bursting. Reset count.
+So far
+Return: 4.11%
+Drawdown: -3.47%
+Beta to market seems lower but doubt about risk-adjusted return.
