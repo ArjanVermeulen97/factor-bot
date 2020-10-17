@@ -21,3 +21,6 @@ So far
 Return: 4.11%
 Drawdown: -3.47%
 Beta to market seems lower but doubt about risk-adjusted return.
+
+
+NOTE: code presented here is purely a reference for how to implement a factor investing bot on crypto futures. Blindly running the code will *not* work.
