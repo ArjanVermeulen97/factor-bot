@@ -22,5 +22,11 @@ Return: 4.11%
 Drawdown: -3.47%
 Beta to market seems lower but doubt about risk-adjusted return.
 
+3 Months:
+Starting research on more factors. 
+So far:
+Return: 13.27%
+Drawdown: 5.01%
+Clear upward trend forming in returns
 
 NOTE: code presented here is purely a reference for how to implement a factor investing bot on crypto futures. Blindly running the code will *not* work.
