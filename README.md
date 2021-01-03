@@ -23,10 +23,14 @@ Drawdown: -3.47%
 Beta to market seems lower but doubt about risk-adjusted return.
 
 3 Months:
-Starting research on more factors. 
+Starting research on more factors. Added a slight edge to the long side of the strategy to increase market exposure. (taking market exposure from random to definitely positive)
 So far:
 Return: 13.27%
 Drawdown: 5.01%
 Clear upward trend forming in returns
+
+## 2021
+
+Went live in January on a 3-factor strategy based on Momentum, Reversal and Network Value to Transactions (as a proxy for Value). Code coming soon.
 
 NOTE: code presented here is purely a reference for how to implement a factor investing bot on crypto futures. Blindly running the code will *not* work.
